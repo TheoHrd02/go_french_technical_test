@@ -19,6 +19,7 @@ const {
   textMessage,
   toolUseMessage,
   userPromptOfCall,
+  validResponseOf,
 } = await import("./helpers/mockLlm.js");
 
 const REQUETE = { sujet: "géographie mondiale", niveau: "moyen", nombre_questions: 3 } as const;
@@ -38,7 +39,7 @@ describe("generateQuiz", () => {
   });
 
   it("genere 10 questions en un seul appel, pas dix", async () => {
-    mockLLMResponses(mockCreate, [toolUseMessage(loadJsonFixture("valid-response.json"))]);
+    mockLLMResponses(mockCreate, [toolUseMessage(validResponseOf(10))]);
 
     await generateQuiz({ ...REQUETE, nombre_questions: 10 });
 

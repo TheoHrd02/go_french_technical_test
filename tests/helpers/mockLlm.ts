@@ -52,3 +52,17 @@ export function userPromptOfCall(mock: Mock, index: number): string {
   const content = body?.messages?.[0]?.content;
   return typeof content === "string" ? content : "";
 }
+
+/** Lot valide de `n` questions distinctes, pour les cas ou le cardinal compte. */
+export function validResponseOf(n: number): Record<string, unknown> {
+  return {
+    sujet: "géographie mondiale",
+    niveau: "moyen",
+    questions: Array.from({ length: n }, (_, index) => ({
+      question: `Question numéro ${index + 1} de géographie mondiale ?`,
+      options: [`Option A${index}`, `Option B${index}`, `Option C${index}`, `Option D${index}`],
+      bonne_reponse: index % 4,
+      explication: `Justification de la réponse de la question ${index + 1}.`,
+    })),
+  };
+}
