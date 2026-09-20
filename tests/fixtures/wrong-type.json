@@ -1,0 +1,12 @@
+{
+  "sujet": "géographie mondiale",
+  "niveau": "moyen",
+  "questions": [
+    {
+      "question": "Quel pays a pour capitale Oslo ?",
+      "options": ["La Norvège", "La Suède", "Le Danemark", "La Finlande"],
+      "bonne_reponse": "0",
+      "explication": "Oslo est la capitale de la Norvège depuis 1814."
+    }
+  ]
+}
