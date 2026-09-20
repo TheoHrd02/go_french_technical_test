@@ -25,3 +25,21 @@ export const ReponseSchema = z
 export type Question = z.infer<typeof QuestionSchema>;
 export type Reponse = z.infer<typeof ReponseSchema>;
 export type Niveau = Reponse["niveau"];
+
+/**
+ * Schema d'entree HTTP. Valide avant tout appel LLM : un corps invalide
+ * ne doit consommer ni credit API ni latence.
+ */
+export const RequestSchema = z
+  .object({
+    sujet: z.string().trim().min(1, "sujet ne doit pas etre vide").max(200, "sujet limite a 200 caracteres"),
+    niveau: z.enum(["facile", "moyen", "difficile"]),
+    nombre_questions: z
+      .number()
+      .int("nombre_questions doit etre un entier")
+      .min(1, "nombre_questions doit valoir au moins 1")
+      .max(10, "nombre_questions ne peut pas depasser 10"),
+  })
+  .strict();
+
+export type QuizRequestInput = z.infer<typeof RequestSchema>;
