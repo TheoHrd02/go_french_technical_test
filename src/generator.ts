@@ -5,6 +5,7 @@ import { callLLM, truncate } from "./llm.js";
 import { logger } from "./logger.js";
 import { buildSystemPrompt, buildUserPrompt } from "./prompt.js";
 import { ReponseSchema, type Niveau, type Reponse } from "./schemas.js";
+import { normaliserReponse, validerCoherence } from "./validation-metier.js";
 
 export interface QuizRequest {
   sujet: string;
@@ -100,6 +101,24 @@ export async function generateQuiz(
         continue;
       }
 
+      // `sujet` et `niveau` sont imposes par le serveur avant tout controle metier.
+      const reponse = normaliserReponse(valide.data, { sujet, niveau });
+
+      const violations = validerCoherence(reponse, nombreQuestions);
+      if (violations.length > 0) {
+        dernieresErreurs = violations;
+        derniereCause = `coherence metier invalide (${violations.length} violation(s))`;
+        feedback = buildFeedback(violations, rawContent);
+        logger.info("tentative rejetee", {
+          requestId,
+          tentative,
+          cause: "METIER_INVALIDE",
+          erreurs: violations,
+          latenceMs: Date.now() - debut,
+        });
+        continue;
+      }
+
       logger.info("quiz genere", {
         requestId,
         tentative,
@@ -108,7 +127,7 @@ export async function generateQuiz(
         tokensSortie: usage.outputTokens,
       });
 
-      return valide.data;
+      return reponse;
     } catch (error) {
       const kind = classifyError(error);
       derniereCause = describeCause(error);
