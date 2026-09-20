@@ -1,0 +1,11 @@
+{
+  "sujet": "géographie mondiale",
+  "niveau": "moyen",
+  "questions": [
+    {
+      "question": "Quel est le plus haut sommet d'Afrique ?",
+      "options": ["Le Kilimandjaro", "Le mont Kenya", "Le Ruwenzori", "Le Toubkal"],
+      "bonne_reponse": 0
+    }
+  ]
+}

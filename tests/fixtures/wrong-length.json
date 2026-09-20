@@ -1,0 +1,12 @@
+{
+  "sujet": "géographie mondiale",
+  "niveau": "moyen",
+  "questions": [
+    {
+      "question": "Quelle mer borde la Croatie ?",
+      "options": ["L'Adriatique", "La mer Noire", "La Baltique"],
+      "bonne_reponse": 0,
+      "explication": "La Croatie possède une longue façade sur la mer Adriatique."
+    }
+  ]
+}

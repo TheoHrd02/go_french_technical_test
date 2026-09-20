@@ -1,0 +1,24 @@
+{
+  "sujet": "géographie mondiale",
+  "niveau": "moyen",
+  "questions": [
+    {
+      "question": "Quel fleuve traverse la ville de Budapest ?",
+      "options": ["Le Danube", "Le Rhin", "L'Elbe", "La Vistule"],
+      "bonne_reponse": 0,
+      "explication": "Le Danube coupe Budapest en deux, séparant Buda de Pest."
+    },
+    {
+      "question": "Quelle est la capitale de l'Australie ?",
+      "options": ["Sydney", "Melbourne", "Canberra", "Perth"],
+      "bonne_reponse": 2,
+      "explication": "Canberra a été choisie comme capitale en 1908 pour arbitrer la rivalité entre Sydney et Melbourne."
+    },
+    {
+      "question": "Quel pays possède le plus grand nombre de fuseaux horaires ?",
+      "options": ["La Russie", "Les États-Unis", "La Chine", "La France"],
+      "bonne_reponse": 3,
+      "explication": "Avec ses territoires d'outre-mer, la France couvre douze fuseaux horaires."
+    }
+  ]
+}
